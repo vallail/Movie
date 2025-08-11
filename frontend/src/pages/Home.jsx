@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import MovieCard from "../components/MovieCard";
 import "../css/Home.css";
 import { searchMovies, getPopularMovies } from "../services/api";
+import { useMovieContext } from "../contexts/MovieContext";
 
 const Home = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -9,6 +10,7 @@ const Home = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [isSearching, setIsSearching] = useState(false);
+  const { isLoaded } = useMovieContext();
 
   useEffect(() => {
     const loadPopularMovies = async () => {
@@ -88,12 +90,12 @@ const Home = () => {
               className="search-input"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              disabled={loading}
+              disabled={loading || !isLoaded}
             />
             <button
               type="submit"
               className="search-button"
-              disabled={loading || isSearching || !searchQuery.trim()}>
+              disabled={loading || isSearching || !searchQuery.trim() || !isLoaded}>
               {isSearching ? (
                 <>
                   <span>🔍</span>

@@ -5,11 +5,11 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 const Favorites = () => {
-  const { favorites, removeFromFavorites } = useMovieContext();
+  const { favorites, clearAllFavorites, isLoaded } = useMovieContext();
   const [showClearConfirm, setShowClearConfirm] = useState(false);
 
   const handleClearAll = () => {
-    favorites.forEach(movie => removeFromFavorites(movie.id));
+    clearAllFavorites();
     setShowClearConfirm(false);
   };
 
@@ -20,6 +20,19 @@ const Favorites = () => {
   const cancelClear = () => {
     setShowClearConfirm(false);
   };
+
+  // Show loading state while context is initializing
+  if (!isLoaded) {
+    return (
+      <div className="favorites">
+        <div className="favorites-container">
+          <div className="loading">
+            Loading your favorites...
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   // Show empty message if no favorites
   if (!favorites || favorites.length === 0) {

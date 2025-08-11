@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
 import Navbar from "./components/Navbar";
 import About from "./pages/About";
+import Contact from "./pages/Contact";
 import "./css/App.css";
 import { MovieProvider } from "./contexts/MovieContext";
 
@@ -23,6 +24,10 @@ const App = () => {
           <Route
             path="/about"
             element={<About />}
+          />
+          <Route
+            path="/contact"
+            element={<Contact />}
           />
         </Routes>
       </main>
