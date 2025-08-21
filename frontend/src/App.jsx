@@ -6,6 +6,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import "./css/App.css";
 import { MovieProvider } from "./contexts/MovieContext";
+import Footer from "./components/Footer";
 
 const App = () => {
   return (
@@ -31,6 +32,7 @@ const App = () => {
           />
         </Routes>
       </main>
+      <Footer />
     </MovieProvider>
   );
 };
